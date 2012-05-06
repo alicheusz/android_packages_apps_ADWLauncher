@@ -223,9 +223,8 @@ public class AppInfoMList extends ListActivity implements
 
             try {
                 PackageInfo pkgInfo = pm.getPackageInfo(tempAppInfo.intent.getComponent().getPackageName(), 0);
-                tempAppListInfo.firstInstallTime = pkgInfo.firstInstallTime;
             } catch (NameNotFoundException e) {
-                tempAppListInfo.firstInstallTime = 0;
+		Log.d(TAG, "fistinstallTime not available in froyo");
             }
 
             tempAppListInfo.title = tempAppInfo.title.toString();
@@ -237,7 +236,7 @@ public class AppInfoMList extends ListActivity implements
 
             savedAppInfos.add(tempAppListInfo);
             if (DBG) Log.d(TAG, tempAppListInfo.className + " "
-                    + tempAppListInfo.checked + " installTime: " + tempAppListInfo.firstInstallTime);
+                    + tempAppListInfo.checked);
         }
 
         mAppInfoAdapter.updateList(savedAppInfos);
